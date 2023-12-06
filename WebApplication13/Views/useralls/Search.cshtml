@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WebApplication13.Models.userall>
+
+    <head>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    </head>
+    <h2>search</h2>
+    <br />
+    <form asp-action="Search">
+        <div class="form-group">
+            <h6>Name </h6>
+            <input name="s" class="form-control" />
+            <br />
+            <h6>Role</h6>
+        <select class="form-control" name="role" id="ro" onchange="gettitle()">
+            <option value="0">Please select</option>
+            <option value="admin">Admin</option>
+            <option value="customer">Customer</option>
+        </select>
+
+        </div>
+        <input type="submit" value="Search" class="btn btn-default" />
+    </form>
+    <br /> <p><a asp-action="index">Home</a></p>
+    <table class="table animate__animated animate__fadeInDownBig">
+        <thead>
+            <tr>
+            <th> @Html.DisplayNameFor(model => model.name) </th>
+            <th> @Html.DisplayNameFor(model => model.password) </th>
+            <th> @Html.DisplayNameFor(model => model.role) </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                <td> @Html.DisplayFor(modeluserall => item.name) </td>
+                <td>  @Html.DisplayFor(modeluserall => item.password) </td>
+                <td> @Html.DisplayFor(modeluserall => item.role) </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+

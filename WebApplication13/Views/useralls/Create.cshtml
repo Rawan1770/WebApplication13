@@ -1,0 +1,59 @@
+﻿@model WebApplication13.Models.userall
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>userall</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="name" class="control-label"></label>
+                <input asp-for="name" class="form-control" />
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="role" class="control-label"></label>
+                <select class="form-control" asp-for="role">
+                    <option value="0">Please select</option>
+                    <option value="1">Customer</option>
+                    <option value="2">Admin</option>
+                </select>
+                <span asp-validation-for="role" class="text-danger"></span>
+
+           
+
+            </div>
+            <div class="form-group">
+                <label asp-for="RegistDate" class="control-label"></label>
+                <input asp-for="RegistDate" class="form-control" asp-format="{0:dd/MM/yyyy}" />
+                <span asp-validation-for="RegistDate" class="text-danger"></span>
+            </div>
+
+        
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

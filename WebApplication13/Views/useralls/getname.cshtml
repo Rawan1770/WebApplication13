@@ -1,0 +1,57 @@
+﻿@model WebApplication13.Models.userall
+@{
+    ViewData["Title"] = "getname";
+}
+
+<h1>Getname</h1>
+<form asp-action="getname">
+    <div class="form-group">
+    </div>
+    <div class="form-group">
+        <label class="control-label">Select Role</label>
+        <select class="form-control" name="Role" id="ro" onchange="gettitle()">
+            <option value="0">Please select</option>
+            <option value="admin">Admin</option>
+            <option value="customer">Customer</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Select name</label>
+        <select class="form-control" name="name" id="na"> </select>
+    </div>
+    <input type="submit" value="Show" class="btn btn-default" />
+</form>
+<script>
+    async function gettitle() {
+        var cc = document.getElementById('ro').value;
+        var response = await fetch('/getname/' + cc);
+        let x = await response.json();
+        var dd = "<option> Please select</option>";
+        for (i = 0; i < x.length; i++) {
+            dd += "<option>" + x[i].name + "</option>";
+        }
+        document.getElementById("na").innerHTML = dd;
+    }
+</script>
+
+<div>
+    <h4>Getname</h4>
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+       
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+      
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.role)
+        </dt>
+   
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RegistDate)
+        </dt>
+        
+    </dl>
